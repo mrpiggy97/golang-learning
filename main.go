@@ -87,7 +87,7 @@ func main() {
 	go atomics.Update(checkerValue, mutexInstance, waiter)
 	go atomics.Observe(checkerValue, waiter)
 
-	var target []byte = []byte{1, 2, 3, 3}
+	var target []byte = make([]byte, 30)
 	empty := InOut.Reader{}
 	numb, err := empty.Read(target)
 
