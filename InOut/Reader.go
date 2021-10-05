@@ -14,7 +14,10 @@ type Reader struct {
 func (readerInstance *Reader) Read(byteSlice []byte) (int, error) {
 	//this function will swap the values of byteSlice with the byte value of members
 	//in readerInstance.Data
-	//for that will set a number of items to read,we will iterate
+	//for that will set a number of items to read, this number will initially come from
+	//substracting the length of readerInstance.Data and readerInstance.From
+	//however if the length of byteSlice is lower than this number we will just set this
+	//number to the length of the byteSlice
 	if byteSlice == nil {
 		return -1, errors.New("nil target slice")
 	}
