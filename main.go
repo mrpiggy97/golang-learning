@@ -99,6 +99,10 @@ func main() {
 		fmt.Printf("%v value of character in string %v\n", byte(mr.Data[i]), b)
 	}
 
+	var message []byte = []byte("this is a byte string")
+	fmt.Printf("%v this is the byte slice\n", message)
+	var MyWriter InOut.Writer = InOut.Writer{"save ", 6}
+	si, e := MyWriter.Write(message)
 	waiter.Wait()
 	fmt.Printf("final count %v\n", integer)
 	fmt.Printf("%v\n", *stringSlice)
@@ -107,5 +111,7 @@ func main() {
 	fmt.Printf("%v\n", atomic.LoadInt32(intCounter))
 	fmt.Printf("%v bytes %v error\n", numb, err)
 	fmt.Printf("%v bytes %v error %v target\n", n, er, target)
+	fmt.Printf("%v %v\n", MyWriter.Data, si)
+	fmt.Printf("%v\n", e)
 	fmt.Println("main program finished")
 }
