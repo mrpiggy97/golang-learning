@@ -7,6 +7,7 @@ import (
 	"sync/atomic"
 	"time"
 
+	"github.com/mrpiggy97/golang-learning/ErrorHandling"
 	"github.com/mrpiggy97/golang-learning/InOut"
 	"github.com/mrpiggy97/golang-learning/atomics"
 	"github.com/mrpiggy97/golang-learning/cxts"
@@ -14,6 +15,7 @@ import (
 )
 
 func main() {
+	ErrorHandling.Something()
 	var timerInstance *time.Timer = time.NewTimer(time.Second * 3)
 	var tickerInstance *time.Ticker = time.NewTicker(time.Second)
 	var waiter *sync.WaitGroup = &sync.WaitGroup{}
@@ -103,6 +105,12 @@ func main() {
 	fmt.Printf("%v this is the byte slice\n", message)
 	var MyWriter InOut.Writer = InOut.Writer{"save ", 6}
 	si, e := MyWriter.Write(message)
+	var stringSlicer []string = make([]string, 100)
+	for i := 0; i < len(stringSlicer); i++ {
+		stringSlicer[i] = fmt.Sprintf("%v %v", "fabian", i)
+	}
+	InOut.WriteToFile(stringSlicer, "/tmp/numbers.txt")
+	InOut.ReadFile("/tmp/numbers.txt")
 	waiter.Wait()
 	fmt.Printf("final count %v\n", integer)
 	fmt.Printf("%v\n", *stringSlice)
