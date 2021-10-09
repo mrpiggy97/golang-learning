@@ -26,6 +26,6 @@ func (writerInstance *Writer) Write(target []byte) (int, error) {
 	}
 
 	writerInstance.Data = writerInstance.Data + string(target[0:currentLengthUsed])
-	fmt.Printf("writer data %v", writerInstance.Data)
+	fmt.Printf("writer data %v\n", writerInstance.Data)
 	return currentLengthUsed, err
 }
