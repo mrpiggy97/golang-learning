@@ -12,6 +12,7 @@ import (
 	"github.com/mrpiggy97/golang-learning/atomics"
 	"github.com/mrpiggy97/golang-learning/cxts"
 	"github.com/mrpiggy97/golang-learning/goroutines"
+	"github.com/mrpiggy97/golang-learning/stringManipulation"
 )
 
 func main() {
@@ -110,7 +111,18 @@ func main() {
 		stringSlicer[i] = fmt.Sprintf("%v %v", "fabian", i)
 	}
 	InOut.WriteToFile(stringSlicer, "/tmp/numbers.txt")
+	InOut.WriteToFile(stringSlicer, "/tmp/numbers.txt")
 	InOut.ReadFile("/tmp/numbers.txt")
+	InOut.OsWriter("/workspaces/golang-learning/InOut/write-here.txt", stringSlicer[0:10])
+	InOut.ReadFile("/tmp/numbers.txt")
+	InOut.OsOffSet("/tmp/numbers.txt")
+	var writeRecieve chan map[string]string = make(chan map[string]string, 2)
+	go InOut.RecieveAndWrite(
+		writeRecieve,
+		"/workspaces/golang-learning/InOut/write-here.go",
+		waiter,
+	)
+	go InOut.SendMessage(writeRecieve, waiter)
 	waiter.Wait()
 	fmt.Printf("final count %v\n", integer)
 	fmt.Printf("%v\n", *stringSlice)
@@ -121,5 +133,16 @@ func main() {
 	fmt.Printf("%v bytes %v error %v target\n", n, er, target)
 	fmt.Printf("%v %v\n", MyWriter.Data, si)
 	fmt.Printf("%v\n", e)
+	var stringToBeManipulated string = "faBiAnJeEsus"
+	stringManipulation.StringToUpperCase(stringToBeManipulated)
+	for _, funcMember := range InOut.Fs {
+		funcMember()
+	}
+	InOut.Write()
+	InOut.ReaderStd()
+	InOut.BufferReader()
+	InOut.Scanner()
+	InOut.BufferWriter()
+	InOut.UserInput()
 	fmt.Println("main program finished")
 }

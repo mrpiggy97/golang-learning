@@ -13,7 +13,7 @@ func TickerReaction(tickerInstance *time.Ticker, waiter *sync.WaitGroup) {
 		var currentTime time.Time = <-tickerInstance.C
 		var currentSecond int = currentTime.Second()
 		fmt.Printf("ticker time %v\n", currentSecond)
-		if currentSecond >= 30 {
+		if currentSecond >= 5 {
 			return
 		}
 	}
