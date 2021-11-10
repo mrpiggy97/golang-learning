@@ -4,6 +4,8 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+
+	"github.com/mrpiggy97/golang-learning/ErrorHandling"
 )
 
 func UserInput() {
@@ -11,5 +13,14 @@ func UserInput() {
 	var scanner *bufio.Scanner = bufio.NewScanner(os.Stdin)
 	scanner.Scan()
 	var text string = scanner.Text()
-	fmt.Println(text)
+	var filePath string = "/workspaces/golang-learning/InOut/user-input.txt"
+	file, fileError := os.Create(filePath)
+	if fileError != nil {
+		panic(fileError)
+	}
+	_, writeError := file.WriteString(text)
+	if writeError != nil {
+		panic(writeError)
+	}
+	defer ErrorHandling.RecoverFromFileError()
 }
