@@ -1,18 +1,16 @@
-package goroutines
+package cxts
 
 import (
 	"context"
 	"fmt"
 	"sync"
 	"time"
-
-	"github.com/mrpiggy97/golang-learning/cxts"
 )
 
 func DoCalculation(number1 int, number2 int, waiter *sync.WaitGroup, channel <-chan int) {
 	defer waiter.Done()
 	waiter.Add(1)
-	var operation cxts.ContextKey = "operation"
+	var operation ContextKey = "operation"
 	cxt := context.WithValue(context.Background(), operation, "+")
 	cxt2, cancel := context.WithDeadline(cxt, time.Now().Add(time.Millisecond*100))
 	time.Sleep(time.Second * 2)

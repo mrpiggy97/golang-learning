@@ -9,7 +9,6 @@ import (
 
 func MakeContextValue(waiter *sync.WaitGroup, channel chan<- context.Context) {
 	defer waiter.Done()
-	defer close(channel)
 	waiter.Add(1)
 	time.Sleep(time.Second * 3)
 	var message ContextKey = "message"
