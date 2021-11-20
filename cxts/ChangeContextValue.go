@@ -15,11 +15,8 @@ func ChangeContextValue(waiter *sync.WaitGroup, channel chan context.Context) {
 	var UUID ContextKey = "UUID"
 	var UUIDValue float32 = rand.Float32()
 	var message ContextKey = "message"
-	println("it gets here")
 	var oldContext context.Context = <-channel
-	println("it gets gere")
 	var newContext context.Context = context.WithValue(oldContext, UUID, UUIDValue)
-	fmt.Printf("%v this is the old value\n", newContext.Value(message))
-	fmt.Printf("this is the new value %v\n", newContext.Value(UUID))
+	fmt.Println(newContext.Value(message))
 	channel <- newContext
 }
