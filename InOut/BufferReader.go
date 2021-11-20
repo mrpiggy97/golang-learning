@@ -13,10 +13,10 @@ func BufferReader() {
 	var reader *bufio.Reader = bufio.NewReader(os.Stdin)
 	fmt.Println("<<< what do you have to say")
 	fmt.Print("<<< ")
-	text, err := reader.ReadString('\n')
+	text, err := reader.ReadString('r')
 	if err != nil {
 		panic(err)
 	}
 	fmt.Println(">>> you are right!!!!")
-	fmt.Println(text)
+	fmt.Println(">>> " + text)
 }
