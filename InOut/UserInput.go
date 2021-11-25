@@ -9,7 +9,8 @@ import (
 )
 
 func UserInput() {
-	fmt.Println("please enter message")
+	fmt.Println("<<< please enter message")
+	fmt.Print("<<< ")
 	var scanner *bufio.Scanner = bufio.NewScanner(os.Stdin)
 	scanner.Scan()
 	var text string = scanner.Text()

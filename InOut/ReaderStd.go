@@ -13,8 +13,10 @@ func ReaderStd() {
 	//if this limit is exeeded then the console will just take
 	//the number of characters allowed and dismiss the rest
 	//provoking a loss of information
-	var target []byte = make([]byte, 3)
+	var target []byte = make([]byte, 4)
+	fmt.Println(target)
 	fmt.Println("<<< enter value")
+	fmt.Print("\n<<< ")
 	bytesRead, err := os.Stdin.Read(target)
 	if err != nil {
 		panic(err)
@@ -23,7 +25,7 @@ func ReaderStd() {
 	var printedMessage string = fmt.Sprintf("%v %v", bytesRead, strings.ToUpper(message))
 	for _, runeLetter := range printedMessage {
 		time.Sleep(time.Millisecond * 300)
-		var runeString string = fmt.Sprintf("%v ", runeLetter)
+		var runeString string = fmt.Sprintf("%v %v", runeLetter, string(byte(runeLetter)))
 		fmt.Println(runeString)
 	}
 }
