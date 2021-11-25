@@ -11,6 +11,7 @@ import (
 	"github.com/mrpiggy97/golang-learning/InOut"
 	"github.com/mrpiggy97/golang-learning/atomics"
 	"github.com/mrpiggy97/golang-learning/cxts"
+	"github.com/mrpiggy97/golang-learning/encodings"
 	"github.com/mrpiggy97/golang-learning/goroutines"
 	"github.com/mrpiggy97/golang-learning/stringManipulation"
 )
@@ -32,19 +33,19 @@ func main() {
 
 	contextCancel, cancel := context.WithCancel(context.Background())
 	for i := 0; i < 5; i++ {
-		go goroutines.Setter(&integer, contextCancel, i, waiter)
+		go cxts.Setter(&integer, contextCancel, i, waiter)
 	}
 	for sleepTime := 250; sleepTime <= 1000; sleepTime = sleepTime + 250 {
 		var sleepTime time.Duration = time.Duration(sleepTime * int(time.Millisecond))
 		go goroutines.WorkTimeout(sleepTime, workTimeoutChannel, waiter)
-		goroutines.RecieveFromWorkTimeout(waiter, workTimeoutChannel, contextTimeout)
+		cxts.RecieveFromWorkTimeout(waiter, workTimeoutChannel, contextTimeout)
 	}
-	go goroutines.IncrementInteger(deadlineIntegerPointer, waiter)
+	go cxts.IncrementInteger(deadlineIntegerPointer, waiter)
 	go cxts.MakeContextValue(waiter, contextValueChannel)
 	go cxts.ChangeContextValue(waiter, contextValueChannel)
 	var channelCalc chan int = make(chan int, 2)
 	go goroutines.SendNumbersToCalculate(channelCalc)
-	go goroutines.DoCalculation(4000, 5000, waiter, channelCalc)
+	go cxts.DoCalculation(4000, 5000, waiter, channelCalc)
 	var onceChannel chan bool = make(chan bool, 2)
 	var onceInstance *sync.Once = &sync.Once{}
 	var first int = 0
@@ -67,7 +68,7 @@ func main() {
 	go goroutines.Consumer(channel, waiter, 2)
 	go goroutines.Reciever(channel2, waiter)
 	go goroutines.Sender(channel2, waiter)
-	go goroutines.TriggerCancel(cancel, waiter)
+	go cxts.TriggerCancel(cancel, waiter)
 	var val *int = new(int)
 	for i := 0; i <= 100; i++ {
 		go goroutines.IncreaseValue(val, waiter, mutexInstance)
@@ -134,5 +135,10 @@ func main() {
 	InOut.Scanner()
 	InOut.BufferWriter()
 	InOut.UserInput()
+	InOut.BufferUserInput()
+	encodings.CSVExample()
+	encodings.CSVWrite()
+	encodings.AsOriginal()
+	encodings.PrintJSON()
 	fmt.Println("main program finished")
 }
