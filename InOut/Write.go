@@ -6,11 +6,13 @@ import (
 	"io"
 )
 
+// Writer type.
 type Writer struct {
 	Data string
 	Size int
 }
 
+// Write to target.
 func (writerInstance *Writer) Write(target []byte) (int, error) {
 	if len(target) == 0 {
 		return 0, io.EOF

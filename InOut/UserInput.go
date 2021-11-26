@@ -8,6 +8,7 @@ import (
 	"github.com/mrpiggy97/golang-learning/ErrorHandling"
 )
 
+// UserInput reads input from user and prints it out to console.s
 func UserInput() {
 	fmt.Println("<<< please enter message")
 	fmt.Print("<<< ")

@@ -6,6 +6,7 @@ import (
 	"os"
 )
 
+// Scanner take input from user and prints it out to the console.
 func Scanner() {
 	var scanner *bufio.Scanner = bufio.NewScanner(os.Stdin)
 	fmt.Println(">>> what is the input?")

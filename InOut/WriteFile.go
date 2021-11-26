@@ -19,6 +19,7 @@ func WriteToFile(sliceInstance []string, filePath string) {
 	}
 }
 
+// Write user input to a file.
 func OsWriter(filePath string, message []string) {
 	file, fileError := os.Create(filePath)
 	if fileError != nil {

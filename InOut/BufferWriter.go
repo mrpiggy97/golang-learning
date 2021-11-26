@@ -6,6 +6,8 @@ import (
 	"time"
 )
 
+// BufferWriter will allow user to write input and then
+// it will print out a different thing just because.
 func BufferWriter() {
 	var writer *bufio.Writer = bufio.NewWriter(os.Stdout)
 	var message string = "rule the world with go\n"

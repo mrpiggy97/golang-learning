@@ -8,6 +8,7 @@ import (
 	"github.com/mrpiggy97/golang-learning/ErrorHandling"
 )
 
+// ReadFile will read and print the contents of given file.
 func ReadFile(filePath string) {
 	defer ErrorHandling.RecoverFromFileError()
 	file, readError := ioutil.ReadFile(filePath)
@@ -18,6 +19,7 @@ func ReadFile(filePath string) {
 	fmt.Printf("%s file\n", file)
 }
 
+// OsOffSet will read content of file starting at position 0.
 func OsOffSet(filePath string) {
 	file, fileError := os.OpenFile(filePath, os.O_RDWR, 0644)
 	if fileError != nil {

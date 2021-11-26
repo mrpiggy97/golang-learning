@@ -6,6 +6,7 @@ import (
 	"os"
 )
 
+// BufferUserInput will just take input and print it.
 func BufferUserInput() {
 	fmt.Println(">>> please enter your input:")
 	fmt.Print(">>> ")

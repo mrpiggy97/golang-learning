@@ -5,7 +5,10 @@ import (
 	"strings"
 )
 
+// StringToUpperCase will turn every character of instance
+// to Upper only if that character is lower
 func StringToUpperCase(instance string) {
+
 	var convertedString string = ""
 	for _, character := range instance {
 		var testString string = strings.ToUpper(string(character))

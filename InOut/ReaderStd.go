@@ -7,12 +7,13 @@ import (
 	"time"
 )
 
+// ReaderStd will set a set limit of bytes for what
+// can be written to the console or terminal
+// if this limit is exeeded then the console will just take
+// the number of characters allowed and dismiss the rest
+// provoking a loss of information.
 func ReaderStd() {
-	//this function will set a set limit of bytes for what
-	//can be written to the console or terminal
-	//if this limit is exeeded then the console will just take
-	//the number of characters allowed and dismiss the rest
-	//provoking a loss of information
+
 	var target []byte = make([]byte, 4)
 	fmt.Println(target)
 	fmt.Println("<<< enter value")

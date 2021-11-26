@@ -16,6 +16,8 @@ import (
 	"github.com/mrpiggy97/golang-learning/stringManipulation"
 )
 
+// Main will apply all concepts learned.
+
 func main() {
 	ErrorHandling.Something()
 	var timerInstance *time.Timer = time.NewTimer(time.Second * 3)

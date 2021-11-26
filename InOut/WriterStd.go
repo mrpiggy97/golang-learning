@@ -5,8 +5,8 @@ import (
 	"os"
 )
 
+// WriterStd will write to the console.
 func WriterStd() {
-	//this program will write to the console
 	var message []byte = []byte("this is using the standard library\n")
 	bytesWritten, err := os.Stdout.Write(message)
 	if err != nil {
