@@ -1,13 +1,12 @@
 package stringManipulation
 
 import (
-	"fmt"
 	"strings"
 )
 
 // StringToUpperCase will turn every character of instance
 // to Upper only if that character is lower
-func StringToUpperCase(instance string) {
+func StringToUpperCase(instance string) string {
 
 	var convertedString string = ""
 	for _, character := range instance {
@@ -20,5 +19,5 @@ func StringToUpperCase(instance string) {
 		}
 	}
 
-	fmt.Printf("%v string\n", convertedString)
+	return convertedString
 }
