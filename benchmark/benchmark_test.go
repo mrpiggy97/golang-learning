@@ -1,32 +1,44 @@
 package benchmark
 
 import (
-	"fmt"
 	"testing"
 )
 
-func Sum(number int64) int64 {
-	var i int64 = 0
-	var result int64 = 0
-	for i <= number {
-		result = result + i
-		i++
+func isPrime(number int) bool {
+	if number == 2 || number == 3 || number == 5 || number == 7 || number == 9 {
+		return true
 	}
-	return result
+	if number%2 == 0 {
+		return false
+	}
+	if number%3 == 0 {
+		return false
+	}
+	if number%5 == 0 {
+		return false
+	}
+	if number%7 == 0 {
+		return false
+	}
+	if number%9 == 0 {
+		return false
+	}
+	return true
 }
 
-func BenchmarkSum(benchMarkCase *testing.B) {
-	//this is a basic benchmark test
-	fmt.Println("benchmark n:", benchMarkCase.N)
-	for i := 0; i < benchMarkCase.N; i++ {
-		Sum(100000)
-	}
-}
-
-func BenchmarkSumParallel(benchmarkCase *testing.B) {
-	benchmarkCase.RunParallel(func(pb *testing.PB) {
-		for pb.Next() {
-			Sum(100000)
+func primeCount(number int) int {
+	var count int = 0
+	for i := 2; i <= number; i++ {
+		var numberIsPrime bool = isPrime(i)
+		if numberIsPrime {
+			count = count + 1
 		}
-	})
+	}
+	return count
+}
+
+func BenchmarkPrimeCount(benchCase *testing.B) {
+	for i := 0; i <= benchCase.N; i++ {
+		primeCount(i)
+	}
 }
