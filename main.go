@@ -11,6 +11,7 @@ import (
 	"github.com/mrpiggy97/golang-learning/InOut"
 	"github.com/mrpiggy97/golang-learning/atomics"
 	"github.com/mrpiggy97/golang-learning/cxts"
+	"github.com/mrpiggy97/golang-learning/embedding"
 	"github.com/mrpiggy97/golang-learning/encodings"
 	"github.com/mrpiggy97/golang-learning/goroutines"
 	"github.com/mrpiggy97/golang-learning/stringManipulation"
@@ -143,4 +144,9 @@ func main() {
 	encodings.AsOriginal()
 	encodings.PrintJSON()
 	fmt.Println("main program finished")
+	var student1 embedding.Student = embedding.Student{
+		Person: embedding.Person{Id: 11222, Name: "fabian"},
+		Class:  "4b",
+	}
+	student1.PrintName()
 }
