@@ -7,10 +7,8 @@ func FiboWorker(id int, jobs <-chan int, results chan<- int) {
 		fmt.Printf("worker with id %v started fib %v\n", id, job)
 		var res int = Fibonacci(job)
 		results <- res
-		if job >= 22 {
-			close(results)
-		}
 	}
+	close(results)
 }
 
 func Fibonacci(n int) int {
