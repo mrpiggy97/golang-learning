@@ -23,6 +23,9 @@ func TestFibonacci(testCase *testing.T) {
 		result, channelISAvailable := <-resultsChannel
 		if channelISAvailable {
 			fmt.Println(result)
+			if result >= 17711 {
+				close(resultsChannel)
+			}
 		} else {
 			break
 		}

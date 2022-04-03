@@ -8,7 +8,6 @@ func FiboWorker(id int, jobs <-chan int, results chan<- int) {
 		var res int = Fibonacci(job)
 		results <- res
 	}
-	close(results)
 }
 
 func Fibonacci(n int) int {
