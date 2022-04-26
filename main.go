@@ -1,21 +1,23 @@
 package main
 
 import (
-	"fmt"
 	"sync"
 
-	"github.com/mrpiggy97/golang-learning/mutexes"
+	"github.com/mrpiggy97/golang-learning/workerpools"
 )
 
 // Main will apply all concepts learned.
 
 func main() {
-	var waiter *sync.WaitGroup = new(sync.WaitGroup)
-	var mutexer *sync.RWMutex = new(sync.RWMutex)
-	for i := 1; i <= 5; i++ {
-		waiter.Add(1)
-		go mutexes.Deposit(waiter, i*100, mutexer)
+	service := workerpools.NewService()
+	jobs := []int{3, 4, 5, 5, 4, 8, 8, 8}
+	var wg sync.WaitGroup
+	wg.Add(len(jobs))
+	for _, n := range jobs {
+		go func(job int) {
+			defer wg.Done()
+			service.Work(job)
+		}(n)
 	}
-	waiter.Wait()
-	fmt.Println(mutexes.Balance(mutexer))
+	wg.Wait()
 }
